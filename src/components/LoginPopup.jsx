@@ -1,23 +1,47 @@
-import React from 'react'
 import { useState } from 'react'
-import AuthContext from '../context/AuthContext'
-import { useContext } from 'react'
-const LoginPopup = () => {
-  const {loggedIn,loggedOut,Login,user}=useContext(AuthContext)
-  const [name,setName]=useState("")
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-    loggedIn(name)
+import useAuth from '../hooks/UseAuth'
+import { Navigate, useNavigate } from 'react-router-dom'
+
+const LoginPopup = ({ onClose, onSignupClick }) => {
+  // auth hook bata login liyauxa
+  const { login } = useAuth()
+  const navigate=useNavigate()
+  // form state
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+
+  // form submit
+  const handleSubmit = () => {
+    try {
+      login(email, password)
+      onClose() // popup band garxa
+      navigate('/chat')//navigate to chat
+    } catch (err) {
+      setError(err.message) // error dekhauxa
+    }
   }
+
   return (
-    <div>
-      <form action="" onSubmit={handleSubmit}>
-        <input type="text"
-        placeholder={name}
-        onChange={(e)=>setName(e.target.value)}
+    <div className="popupContainer">
+      <div className="popup">
+        <h2>Login</h2>
+        {/* error message */}
+        {error && <p className="error">{error}</p>}
+        <input placeholder="Email" 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)}
          />
-         <button>Submit</button>
-      </form>
+        <input placeholder="Password"
+         type="password" 
+         value={password}
+          onChange={(e) => setPassword(e.target.value)} 
+          />
+        <button onClick={handleSubmit}>Login</button>
+        {/* signup redirect to */}
+        <p>No account? <span onClick={onSignupClick}>Signup</span></p>
+        <button onClick={onClose}>Close</button>
+      </div>
     </div>
   )
 }
