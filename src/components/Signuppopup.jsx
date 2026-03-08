@@ -2,7 +2,7 @@ import React from 'react'
 import useAuth from '../hooks/UseAuth'
 import { useState } from 'react'
 
-const Signuppopup = () => {
+const Signuppopup = ({onClose,onLoginClick}) => {
     const { signup } = useAuth()
 
     const [name, setName] = useState("")
@@ -13,7 +13,7 @@ const Signuppopup = () => {
     const handleSubmit = () => {
         try {
             signup(name, email, password)
-            onclose()//popup closed
+            onClose()//popup closed
         } catch (err) {
             setError(err.message)
         }
@@ -37,7 +37,7 @@ const Signuppopup = () => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <button onClick={handleSubmit}>Signup</button>
-                //redirect to login
+                {/* //redirect to login */}
                 <p>Already have account? 
                     <span onClick={onLoginClick}>Login</span>
                 </p>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import useAuth from '../hooks/UseAuth'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPopup = ({ onClose, onSignupClick }) => {
   // auth hook bata login liyauxa
