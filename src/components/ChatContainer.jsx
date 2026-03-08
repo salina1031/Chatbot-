@@ -56,7 +56,7 @@ const ChatContainer = ({ onLoginClick }) => {
         {/* guest mode banner */}
         {!user && (
           <div className="guest-banner">
-            <span>Guest mode .</span>
+            <span>Guest mode</span>
             
           </div>
         )}
