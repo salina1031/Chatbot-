@@ -1,22 +1,29 @@
-import axios from "axios";
+const API_KEY = import.meta.env.VITE_GROQ_API_KEY
 
-// Gemini API key from .env
-const GEMINI_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const GeminiServices = {
+  sendMessage: async (text) => {
+    try {
+      const response = await fetch(
+        'https://api.groq.com/openai/v1/chat/completions',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${API_KEY}`
+          },
+          body: JSON.stringify({
+            model: 'llama-3.3-70b-versatile',
+            messages: [{ role: 'user', content: text }] // single message
+          })
+        }
+      )
+      const data = await response.json()
+      return data.choices[0].message.content
+    } catch (err) {
+      console.error('GeminiServices Error:', err)
+      return 'Error: Could not get AI response'
+    }
+  }
+}
 
-// Gemini text chat model endpoint
-const GEMINI_URL = "https://gemini.googleapis.com/v1beta2/models/textchat-bison-001:generateMessage";
-
-export const geminiService = {
-  sendMessage: async (messages) => {
-    // POST request to Gemini API with messages and API key
-    const response = await axios.post(GEMINI_URL, { messages }, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${GEMINI_KEY}`,
-      },
-    });
-
-    // Return AI's reply (first candidate)
-    return response.data.candidates[0].content;
-  },
-};
+export default GeminiServices
