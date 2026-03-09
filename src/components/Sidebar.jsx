@@ -32,4 +32,4 @@ const Sidebar = ({ currentChatId, onChatSelect, onNewChat, refreshKey }) => {
   )
 }
 
-export default Sidebar
+export default Sidebar;

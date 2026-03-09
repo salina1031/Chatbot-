@@ -6,5 +6,4 @@ const MessageBubble = ({message}) => {
     </div>
   )
 }
-
 export default MessageBubble

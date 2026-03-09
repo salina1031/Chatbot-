@@ -6,7 +6,6 @@ import ChatServices from '../services/ChatServices'
 import MessageBubble from './MessageBubble'
 import MessageInput from './MessageInput'
 import Sidebar from './Sidebar'
-
 const ChatContainer = ({ onLoginClick }) => {
   const { user } = useAuth()
   const [chatId, setChatId] = useState(null) // current chat id
