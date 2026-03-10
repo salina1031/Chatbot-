@@ -1,28 +1,43 @@
 import React from 'react'
-import { useState } from 'react'
-import { useContext } from 'react'
+import { createContext, useState,useEffect } from 'react'
+import AuthServices from '../services/AuthServices'
 
-const AuthContext=useContext({children})
-export default (AuthContext)
-const AuthProvider = () => {
-  const [Login,setLogin]=useState(false)
-  const [user,setUser]=useState("")
+const AuthContext=createContext()//used by all component  globally  store hunxa
 
-  const loggedIn=()=>{
-    setLogin(true)
-    setUser(name)
+
+export const AuthProvider = ({children}) => {
+  
+  const [user,setUser]=useState(null)// logout hunxa
+
+  // already  login  xa ki check garxa
+  useEffect(() => {
+    const loggedInUser = AuthServices.getCurrentUser()
+    if (loggedInUser) setUser(loggedInUser)
+  }, [])
+//create new user 
+  const signup = (name, email, password) => {
+    const newUser = AuthServices.signup(name, email, password)
+    setUser(newUser)//auto login to the web
   }
-  const loggedOut=()=>{
-    setLogin(false)
-    setUser("")
+//existing user ho ki nai verify garxa
+  const login = (email, password) => {
+    const loggedUser = AuthServices.login(email, password)
+    setUser(loggedUser)
   }
+//remove the user
+  const logout = () => {
+    AuthServices.logout()
+    setUser(null)
+  }
+
   return (
-    <div>
-      <AuthContext.Proveder value={{loggedIn,loggedOut,Login,user}}>
-        {children}
-      </AuthContext.Proveder>
-    </div>
+    //sabai components lai pass garxa  user, signup, login, logout 
+    <AuthContext.Provider value={{ user, signup, login, logout }}>
+      {children}
+    </AuthContext.Provider>
   )
 }
+
+export default AuthContext
 
 

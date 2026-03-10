@@ -1,33 +1,28 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import Navbar from '../components/Navbar'
+import ChatContainer from '../components/ChatContainer'
 import LoginPopup from '../components/LoginPopup'
 import Signuppopup from '../components/Signuppopup'
 import useAuth from '../hooks/UseAuth'
 
-const Home = () => {
-  const [showLogin, setShowLogin] = useState(false) // toggle login popup
-  const [showSignup, setShowSignup] = useState(false) // toggle signup popup
-  const { user, logout } = useAuth() // auth state
+const ChatPage = () => {
+  const { logout } = useAuth() // auth logout
   const navigate = useNavigate()
+  const [showLogin, setShowLogin] = useState(false) // show login popup
+  const [showSignup, setShowSignup] = useState(false) // show signup popup
 
   return (
-    <div>
-      {/* Navbar with auth actions */}
+    <div className="chat-page">
+      {/* Navbar with login, signup, logout */}
       <Navbar
         onLoginClick={() => setShowLogin(true)}
         onSignupClick={() => setShowSignup(true)}
         onLogout={() => { logout(); navigate('/') }}
       />
 
-      {/* Main welcome content */}
-      <div className="home">
-        {/* <img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8yOV8zZF9jaGFyYWN0ZXJfaWxsdXN0cmF0aW9uX3JvYm90X2Z1bGxfYm9keV9zdF8zN2MxNWUzNC1hODk5LTQxYTMtOThjYy1jYzEwMjhmNGVmNzIucG5n.png" className="ai-image" /> */}
-        <h1>Welcome to NoChat</h1>
-        <p>Chat with AI instantly. Login to save your history.</p>
-        <button onClick={() => navigate('/chat')}>Ask your doubt</button>
-      </div>
+      {/* Chat area */}
+      <ChatContainer onLoginClick={() => setShowLogin(true)} />
 
       {/* Login popup */}
       {showLogin && (
@@ -48,4 +43,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default ChatPage
