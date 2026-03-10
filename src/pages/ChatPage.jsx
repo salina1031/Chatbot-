@@ -14,6 +14,7 @@ const ChatPage = () => {
 
   return (
     <div className="chat-page">
+      
       {/* Navbar with login, signup, logout */}
       <Navbar
         onLoginClick={() => setShowLogin(true)}

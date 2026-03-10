@@ -41,7 +41,7 @@ const ChatContainer = ({ onLoginClick }) => {
   }
 
   return (
-    <div className="chat-page">
+    <div className="chat-body">
       {user && (
         <Sidebar
           currentChatId={chatId}
