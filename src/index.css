@@ -8,13 +8,14 @@
 html,body {
     background: #f5f6fa;
     color: #333;
-    max-width: 1400px;
+    
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     padding: 12px 20px;
     background: white;
     border-bottom: 1px solid #e5e5e5;
@@ -24,7 +25,26 @@ html,body {
     font-size: 20px;
     color: #07711e;
 }
+.chat-page {
+  
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100vh;
+    margin: 0.5rem auto;      /* centers horizontally */
+    background: #f7f9f8;
+    align-items: center;
+    box-shadow: 0 3px 13px 1px black;
+}
 
+
+.chat-body {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+}
 .navbar button {
     margin-left: 10px;
     padding: 6px 12px;
@@ -39,19 +59,8 @@ html,body {
     opacity: 0.9;
 }
 
-.chat-page {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-align-items: center;
-    background: #f7f9f8;
-}
-.chat-body {
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-    overflow: hidden;
-}
+
+
 .sidebar {
     width: 240px;
     background: white;
