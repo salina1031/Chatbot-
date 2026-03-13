@@ -18,7 +18,7 @@ const Home = () => {
       <Navbar
         onLoginClick={() => setShowLogin(true)}
         onSignupClick={() => setShowSignup(true)}
-        onLogout={() => { logout(); navigate('/') }}
+        // onLogout={() => { logout(); navigate('/') }}
       />
 
       {/* Main welcome content */}
