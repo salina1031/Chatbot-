@@ -279,9 +279,8 @@ html,body {
 
 .ai-image {
     width: 170px;
-    position: absolute;
-    right: 120px;
-    top: 50%;
+    height: 220px;
+  object-fit: contain;
     transform: translateY(-50%);
     animation: float 3s ease-in-out infinite;
 }

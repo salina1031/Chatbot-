@@ -23,7 +23,7 @@ const Home = () => {
 
       {/* Main welcome content */}
       <div className="home">
-        {/* <img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8yOV8zZF9jaGFyYWN0ZXJfaWxsdXN0cmF0aW9uX3JvYm90X2Z1bGxfYm9keV9zdF8zN2MxNWUzNC1hODk5LTQxYTMtOThjYy1jYzEwMjhmNGVmNzIucG5n.png" className="ai-image" /> */}
+        <img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8yOV8zZF9jaGFyYWN0ZXJfaWxsdXN0cmF0aW9uX3JvYm90X2Z1bGxfYm9keV9zdF8zN2MxNWUzNC1hODk5LTQxYTMtOThjYy1jYzEwMjhmNGVmNzIucG5n.png" className="ai-image" />
         <h1>Welcome to NoChat</h1>
         <p>Chat with AI instantly. Login to save your history.</p>
         <button onClick={() => navigate('/chat')}>Ask your doubt</button>
